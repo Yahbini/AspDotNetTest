@@ -15,4 +15,5 @@ public class RequestEmplSupportServiceImpl : RequestEmplSupportService
     {
         return databaseContext.YeuCaus.ToList();
     }
+
 }

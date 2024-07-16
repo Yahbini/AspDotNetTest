@@ -20,7 +20,15 @@ public class DashboardAdminController : Controller
     [Route("dashboard")]
     public IActionResult Index()
     {
+
         ViewBag.requests = requestService.findAll();
         return View();
+    }
+
+    [Route("logout")]
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Remove("username");
+        return RedirectToAction("index", "login");
     }
 }

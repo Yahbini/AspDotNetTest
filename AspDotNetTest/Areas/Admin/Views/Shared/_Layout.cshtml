@@ -91,8 +91,12 @@
 
                     <!-- Right side toggle and nav items -->
                         <!-- Logout -->
-                        <li style="margin-right: 20px">
-                            <a style="color: white" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                        <li style="margin-right: 20px; margin-top: -10px; display: flex; align-items: center; justify-content: center;">
+                            <form asp-area="admin" asp-controller="dashboard" asp-action="logout" method="post" style="display: flex; align-items: center;">
+                                <button type="submit" style="color: white; background: none; border: none; cursor: pointer;">
+                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout
+                                </button>
+                            </form>
                         </li>
                         <!-- Logout -->
                     <!-- Right side toggle and nav items -->

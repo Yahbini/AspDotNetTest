@@ -1,4 +1,5 @@
 ﻿using AspDotNetTest.Areas.Employee.Service;
+using AspDotNetTest.Helper;
 using AspDotNetTest.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,12 @@ namespace AspDotNetTest.Areas.Employee.Controllers;
 public class ProfileEmoloyeeController : Controller
 {
     private EmployeeReqService employeeReqService;
+    private IWebHostEnvironment webHostEnvironment;
 
-    public ProfileEmoloyeeController(EmployeeReqService employeeReqService)
+    public ProfileEmoloyeeController(EmployeeReqService employeeReqService, IWebHostEnvironment webHostEnvironment)
     {
         this.employeeReqService = employeeReqService;
+        this.webHostEnvironment = webHostEnvironment;
     }
 
     [HttpGet]
@@ -25,7 +28,7 @@ public class ProfileEmoloyeeController : Controller
 
     [HttpPost]
     [Route("index")]
-    public IActionResult Index(NhanVien nhanVien)
+    public IActionResult Index(NhanVien nhanVien, IFormFile file)
     {
         var username = HttpContext.Session.GetString("username");
         if (username != null)
@@ -39,7 +42,21 @@ public class ProfileEmoloyeeController : Controller
 
             account.Hoten = nhanVien.Hoten;
             account.Ngaysinh = nhanVien.Ngaysinh;
-            account.Hinhanh = nhanVien.Hinhanh;
+
+            if (file != null && file.Length > 0)
+            {
+                var fileName = FileHelper.genarateName(file.FileName);
+                var path = Path.Combine(webHostEnvironment.WebRootPath, "images", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                account.Hinhanh = fileName;
+            }
+            else
+            {
+                nhanVien.Hinhanh = account.Hinhanh;
+            }
 
             if (employeeReqService.UpdateEmployee(account))
             {
@@ -54,8 +71,16 @@ public class ProfileEmoloyeeController : Controller
         }
         else
         {
-            return RedirectToAction("login", "account");
+            return RedirectToAction("index", "login");
         }
 
+    }
+
+    [HttpPost]
+    [Route("logout")]
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Remove("username");
+        return RedirectToAction("index", "login");
     }
 }
