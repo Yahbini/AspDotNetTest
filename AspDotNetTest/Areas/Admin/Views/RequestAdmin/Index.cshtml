@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="margin-left: 300px; margin-top: 50px;">Request of @ViewBag.Employee.Username</h1>
+
+<table class="table v-middle" style="width: 1430px; margin-left: 300px; margin-top: 50px;">
+    <thead>
+        <tr class="bg-light">
+            <th class="border-top-0">Id</th>
+            <th class="border-top-0">Title</th>
+            <th class="border-top-0">Description</th>
+            <th class="border-top-0">Date sent</th>
+            <th class="border-top-0" style="text-align: center">Priority</th>
+            <th class="border-top-0" style="text-align: center">Employee Sent Request</th>
+            <th class="border-top-0" style="text-align: center">Employee Handles Request</th>
+            <th class="border-top-0">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var req in ViewBag.requests)
+        {
+            <tr>
+                <td>
+                    @req.Mayeucau
+                </td>
+                <td>
+                    @req.Tieude
+                </td>
+                <td>
+                    @req.Noidung
+                </td>
+                <td>
+                    @req.Ngaygui
+                </td>
+                <td style="text-align: center">
+                    @req.Madouutien
+                </td>
+                <td style="text-align: center">
+                    @req.ManvGui
+                </td>
+                <td style="text-align: center">
+                    @req.ManvXuly
+                </td>
+                <td>
+                    <a asp-area="admin" asp-controller="requestadmin" asp-action="details" asp-route-id="@req.Mayeucau" style="padding-right: 10px;">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <i class="ti-check"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

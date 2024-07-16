@@ -1,0 +1,82 @@
+﻿@model AspDotNetTest.Models.YeuCau
+
+
+
+@{
+    Layout = "~/Areas/Employee/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="margin-left: 400px; margin-top: 50px">Add Request</h1>
+
+<form method="post" asp-area="employee" asp-controller="request" asp-action="add" enctype="multipart/form-data">
+    <table style="margin-left: 400px">
+        <tr>
+            <th>Title</th>
+            <td>
+                <input type="text" asp-for="Tieude" />
+            </td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>
+                <input type="text" asp-for="Noidung" />
+            </td>
+        </tr>
+        <tr>
+            <th>Sent Date</th>
+            <td>
+                <input asp-for="Ngaygui" asp-format="{0:dd/mm/yyyy}" id="dob" />
+            </td>
+        </tr>
+        <tr>
+            <th>Priority</th>
+            <td>
+                <select asp-for="Madouutien">
+                    @foreach (var priority in ViewBag.priorities)
+                    {
+                        <option value="@priority.Madouutien">@priority.Tendouutien</option>
+                    }
+                </select>
+            </td>
+        </tr>
+      
+
+        <tr>
+            <th>Employee Sent Request</th>
+            <td>
+                <select asp-for="ManvGui">
+                    @foreach (var employee in ViewBag.employees)
+                    {
+                        <option value="@employee.Username">@employee.Username</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>&nbsp;</th>
+            <td>
+                <button type="submit">Save</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @ViewBag.Msg
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#dob").datepicker({
+            dateFormat: 'dd/mm/yyyy'
+        });
+    });
+</script>

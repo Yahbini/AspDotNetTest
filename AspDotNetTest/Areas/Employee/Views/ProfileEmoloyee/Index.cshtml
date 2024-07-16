@@ -1,0 +1,63 @@
+﻿@model AspDotNetTest.Models.NhanVien
+
+@{
+    Layout = "~/Areas/Employee/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="margin-left: 300px; margin-top: 50px;">Profile</h1>
+<form method="post" asp-area="employee" asp-controller="profile" asp-action="index" enctype="multipart/form-data">
+    <table style="margin-left: 300px; margin-top: 50px; width: 1420px; font-size: 20px">
+        <tr>
+            <th style="padding-top: 20px">Username</th>
+            <td>
+                @Model.Username
+            </td>
+        </tr>
+        <tr>
+            <th style="padding-top: 20px">New Password</th>
+            <td>
+                <input type="password" name="Password"/>
+            </td>
+        </tr>
+        <tr>
+            <th style="padding-top: 20px">Fullname</th>
+            <td>
+                <input type="text" name="Hoten" value="@Model.Hoten"/>
+            </td>
+        </tr>
+        <tr>
+            <th style="padding-top: 20px">Date of birth</th>
+            <td>
+                <input type="text" name="Ngaysinh" value="@Model.Ngaysinh" />
+            </td>
+        </tr>
+        <tr>
+            <th style="padding-top: 20px">Active</th>
+            <td>
+                @Model.Kichhoat
+            </td>
+        </tr>
+        <tr>
+            <th style="padding-top: 20px">Image</th>
+            <td>
+                <img src="~/images/@Model.Hinhanh" alt="Image" style="width: 50px; height: 50px"/>
+                <input type="file" name="Hinhanh"/>
+            </td>
+        </tr>
+        <tr>
+            <th style="padding-top: 20px">Role</th>
+            <td>
+                @Model.Quyen
+            </td>
+        </tr>
+        <tr>
+            <th style="padding-top: 20px">&nbsp;</th>
+            <td>
+                <button type="submit">Save</button>
+            </td>
+        </tr>
+        <tr>
+            @TempData["Msg"]
+        </tr>
+    </table>
+</form>

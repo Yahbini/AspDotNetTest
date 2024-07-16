@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style ="margin-left: 300px; margin-top: 50px;">All Employees</h1>
+<table class="table v-middle" style="margin-left: 300px; margin-top: 50px; width: 1420px">
+     <thead>
+         <tr class="bg-light">
+             <th class="border-top-0">Username</th>
+             <th class="border-top-0">Fullname</th>
+             <th class="border-top-0">Date of birth</th>
+             <th class="border-top-0">Active</th>
+             <th class="border-top-0">Image</th>
+             <th class="border-top-0">Role</th>
+             <th class="border-top-0">Action</th>
+         </tr>
+     </thead>
+     <tbody>
+         @foreach (var emp in ViewBag.employees) {
+             <tr>
+                <td style="vertical-align: middle; font-size: 16px">
+                    @emp.Username
+                </td>
+                <td style="vertical-align: middle; font-size: 16px">
+                    @emp.Hoten
+                </td>
+                <td style="vertical-align: middle; font-size: 16px">
+                    @emp.Ngaysinh
+                </td ">
+                <td style="vertical-align: middle; font-size: 16px">
+                    @emp.Kichhoat
+                </td>
+                <td style="vertical-align: middle; font-size: 16px">
+                    <img src="~/images/@emp.Hinhanh" style="width: 50px; height: 50px"/>
+                </td>
+                <td style="vertical-align: middle; font-size: 16px">
+                    @emp.Quyen
+                </td>
+                <td style="vertical-align: middle; font-size: 16px">
+                    <a asp-area="" asp-controller="" asp-action="" style="padding-right: 10px">
+                        <i class="ti-pencil-alt"></i>
+                    </a>
+                    <a asp-area="admin" asp-controller="requestadmin" asp-action="index" asp-route-username="@emp.Username" style="padding-right: 10px">
+                        <i class="fa fa-list"></i>
+                    </a>
+                </td>
+             </tr>
+         }
+     </tbody>
+ </table>

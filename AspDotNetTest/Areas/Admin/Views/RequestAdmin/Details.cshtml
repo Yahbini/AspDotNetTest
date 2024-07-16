@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style ="margin-left: 300px; margin-top: 50px;">Request</h1>
+<form method="post" asp-area="admin" asp-controller="requestadmin" asp-action="details" asp-route-id="@Model.Mayeucau">
+    <table style="margin-left: 300px; margin-top: 50px; font-size: 20px;">
+
+        <tr style="padding: 10px">
+            <th style="padding-right: 30px;">Id</th>
+            <td>
+                @Model.Mayeucau
+            </td>
+        </tr>
+
+        <tr style="padding: 10px">
+            <th style="padding-right: 30px;">Title</th>
+            <td>
+                @Model.Tieude
+            </td>
+        </tr>
+
+        <tr style="padding: 10px">
+            <th style="padding-right: 30px;">Description</th>
+            <td>
+                @Model.Noidung
+            </td>
+        </tr>
+
+        <tr style="padding: 10px">
+            <th style="padding-right: 30px;">Date sent</th>
+            <td>
+                @Model.Ngaygui
+            </td>
+        </tr>
+
+        <tr style="padding: 10px">
+            <th style="padding-right: 30px;">Priority</th>
+            <td>
+                @Model.Madouutien
+            </td>
+        </tr>
+
+        <tr style="padding: 10px">
+            <th style="padding-right: 30px;">Employee Sent Request</th>
+            <td>
+                @Model.ManvGui
+            </td>
+        </tr>
+
+        <tr style="padding: 10px">
+            <th style="padding-right: 30px;">Employee Handles Request</th>
+            <td>
+                <select name="empHandles">
+                    @foreach (var emp in ViewBag.employees)
+                    {
+                        <option value="@emp.Username">@emp.Username</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr style="padding: 10px">
+            <th style="padding-right: 30px;">&nbsp;</th>
+            <td>
+            </td>
+        </tr>
+        <tr style="padding: 10px">
+            <th>&nbsp;</th>
+            <td>
+                <button type="submit">Save</button>
+            </td>
+        </tr>
+        <tr style="padding: 10px">
+            <th>&nbsp;</th>
+            <td>
+                @ViewBag.Msg
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+                
+        

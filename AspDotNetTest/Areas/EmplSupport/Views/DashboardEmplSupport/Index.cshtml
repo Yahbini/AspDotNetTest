@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "~/Areas/EmplSupport/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Bread crumb and right sidebar toggle -->
+    <div class="page-breadcrumb">
+        <div class="row align-items-center">
+            <div class="col-5">
+                <h4 class="page-title">Dashboard</h4>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Table -->
+   
+        <div class="row">
+            <!-- column -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- title -->
+                        <div class="d-md-flex align-items-center">
+                            <div>
+                                <h3 class="card-title">All Requests</h3>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="dl">
+                                    <select class="custom-select">
+                                        <option value="0" selected>Monthly</option>
+                                        <option value="1">Daily</option>
+                                        <option value="2">Weekly</option>
+                                        <option value="3">Yearly</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- title -->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table v-middle">
+                            <thead>
+                                <tr class="bg-light">
+                                    <th class="border-top-0">Id</th>
+                                    <th class="border-top-0">Title</th>
+                                    <th class="border-top-0">Description</th>
+                                    <th class="border-top-0">Date Sent</th>
+                                    <th class="border-top-0">Priority</th>
+                                    <th class="border-top-0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var req in ViewBag.requests) {
+                                    <tr>
+                                        <td style="padding: 10px">
+                                            @req.Mayeucau
+                                        </td>
+                                        <td style="padding: 10px">
+                                            @req.Tieude
+                                        </td>
+                                        <td style="padding: 10px">
+                                            @req.Noidung
+                                        </td ">
+                                        <td style="padding: 10px">
+                                            @req.Ngaygui
+                                        </td>
+                                        <td style="padding: 10px">
+                                            @req.Madouutien
+                                        </td>
+                                        <td>
+                                            <a asp-area="" asp-controller="" asp-action="" style="padding-right: 10px">
+                                                <i class="ti-check"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+        <!-- Table -->
+</div>
