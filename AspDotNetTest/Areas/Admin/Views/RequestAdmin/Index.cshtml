@@ -34,7 +34,18 @@
                     @req.Ngaygui
                 </td>
                 <td style="text-align: center">
-                    @req.Madouutien
+                    @if (@req.Madouutien == 1)
+                    {
+                        <span>Low</span>
+                    }
+                    else if (@req.Madouutien == 2)
+                    {
+                        <span>Medium</span>
+                    }
+                    else if (@req.Madouutien == 3)
+                    {
+                        <span>High</span>
+                    }
                 </td>
                 <td style="text-align: center">
                     @req.ManvGui

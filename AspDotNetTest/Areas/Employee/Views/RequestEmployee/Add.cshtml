@@ -1,5 +1,5 @@
 ﻿@model AspDotNetTest.Models.YeuCau
-
+@using Microsoft.AspNetCore.Http;
 
 
 @{
@@ -8,29 +8,29 @@
 
 <h1 style="margin-left: 400px; margin-top: 50px">Add Request</h1>
 
-<form method="post" asp-area="employee" asp-controller="request" asp-action="add" enctype="multipart/form-data">
-    <table style="margin-left: 400px">
+<form method="post" asp-area="employee" asp-controller="requestemployee" asp-action="add" enctype="multipart/form-data">
+    <table style="margin-left: 400px; font-size: 16px">
         <tr>
-            <th>Title</th>
-            <td>
+            <th style="padding-top: 20px">Title</th>
+            <td style="padding-top: 20px; padding-left: 12px">
                 <input type="text" asp-for="Tieude" />
             </td>
         </tr>
         <tr>
-            <th>Description</th>
-            <td>
+            <th style="padding-top: 20px">Description</th>
+            <td style="padding-top: 20px; padding-left: 12px">
                 <input type="text" asp-for="Noidung" />
             </td>
         </tr>
         <tr>
-            <th>Sent Date</th>
-            <td>
+            <th style="padding-top: 20px">Sent Date</th>
+            <td style="padding-top: 20px; padding-left: 12px">
                 <input asp-for="Ngaygui" asp-format="{0:dd/mm/yyyy}" id="dob" />
             </td>
         </tr>
         <tr>
-            <th>Priority</th>
-            <td>
+            <th style="padding-top: 20px">Priority</th>
+            <td style="padding-top: 20px; padding-left: 12px">
                 <select asp-for="Madouutien">
                     @foreach (var priority in ViewBag.priorities)
                     {
@@ -39,29 +39,19 @@
                 </select>
             </td>
         </tr>
-      
-
         <tr>
-            <th>Employee Sent Request</th>
-            <td>
-                <select asp-for="ManvGui">
-                    @foreach (var employee in ViewBag.employees)
-                    {
-                        <option value="@employee.Username">@employee.Username</option>
-                    }
-                </select>
-            </td>
+            <input type="hidden" style="font-size: 16px" asp-for="ManvGui" value="@Context.Session.GetString("username")"></input>
         </tr>
 
 
         <tr>
-            <th>&nbsp;</th>
-            <td>
+            <th style="padding-top: 20px">&nbsp;</th>
+            <td style="padding-top: 20px; padding-left: 12px">
                 <button type="submit">Save</button>
             </td>
         </tr>
         <tr>
-            <td>
+            <td style="padding-top: 20px; padding-left: 12px">
                 @ViewBag.Msg
             </td>
         </tr>

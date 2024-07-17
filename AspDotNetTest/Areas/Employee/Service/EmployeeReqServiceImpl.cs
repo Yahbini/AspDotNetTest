@@ -13,8 +13,6 @@ public class EmployeeReqServiceImpl : EmployeeReqService
 
     public bool Create(YeuCau request)
     {
-
-
         dbContext.YeuCaus.Add(request);
         return dbContext.SaveChanges() > 0;
 
@@ -38,6 +36,16 @@ public class EmployeeReqServiceImpl : EmployeeReqService
     public List<DoUuTien> findPriority()
     {
         return dbContext.DoUuTiens.ToList();
+    }
+
+    public YeuCau findRequestByID(int id)
+    {
+        return dbContext.YeuCaus.SingleOrDefault(r => r.Mayeucau == id);
+    }
+
+    public List<YeuCau> findRequestByUsername(string username)
+    {
+        return dbContext.YeuCaus.Where(r => r.ManvGui == username).ToList();
     }
 
     public bool UpdateEmployee(NhanVien employee)

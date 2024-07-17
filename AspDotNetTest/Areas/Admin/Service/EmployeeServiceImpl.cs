@@ -18,7 +18,7 @@ public class EmployeeServiceImpl : EmployeeService
     {
         try
         {
-            // nhanVien.Password = BCrypt.Net.BCrypt.HashPassword(nhanVien.Password);
+
             dbContext.NhanViens.Add(nhanVien);
             return dbContext.SaveChanges() > 0;
         }
@@ -37,5 +37,11 @@ public class EmployeeServiceImpl : EmployeeService
     public NhanVien GetEmployeeByUsername(string username)
     {
         return dbContext.NhanViens.FirstOrDefault(u => u.Username == username);
+    }
+
+    public bool IsEmplExist(string username)
+    {
+        var existingUser = dbContext.NhanViens.Any(u => u.Username == username);
+        return !existingUser;
     }
 }

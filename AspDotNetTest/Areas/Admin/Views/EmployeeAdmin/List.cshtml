@@ -24,8 +24,8 @@
                 <td style="vertical-align: middle; font-size: 16px">
                     @emp.Hoten
                 </td>
-                <td style="vertical-align: middle; font-size: 16px">
-                    @emp.Ngaysinh
+                <td style="vertical-align: middle; font-size: 16px" id="dob">
+                    @emp.Ngaysinh.ToString("dd/MM/yyyy")
                 </td ">
                 <td style="vertical-align: middle; font-size: 16px">
                     @emp.Kichhoat
@@ -34,10 +34,18 @@
                     <img src="~/images/@emp.Hinhanh" style="width: 50px; height: 50px"/>
                 </td>
                 <td style="vertical-align: middle; font-size: 16px">
-                    @emp.Quyen
+                    @if(emp.Quyen == 1) {
+                        <span>Employee</span>
+                    }else if(emp.Quyen == 2)
+                    {
+                        <span>Employee Support</span>
+                    } else
+                    {
+                        <span>Admin</span>
+                    }
                 </td>
                 <td style="vertical-align: middle; font-size: 16px">
-                    <a asp-area="" asp-controller="" asp-action="" style="padding-right: 10px">
+                    <a asp-area="admin" asp-controller="employeeadmin" asp-action="index" asp-route-username="@emp.Username" style="padding-right: 10px">
                         <i class="ti-pencil-alt"></i>
                     </a>
                     <a asp-area="admin" asp-controller="requestadmin" asp-action="index" asp-route-username="@emp.Username" style="padding-right: 10px">

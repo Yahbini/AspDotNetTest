@@ -28,7 +28,7 @@
         <tr>
             <th style="padding-top: 20px">Date of birth</th>
             <td>
-                <input type="text" name="Ngaysinh" value="@Model.Ngaysinh" />
+                <input type="text" name="Ngaysinh" value="@string.Format("{0:dd/MM/yyyy}", Model.Ngaysinh)" />
             </td>
         </tr>
         <tr>
@@ -58,7 +58,13 @@
             </td>
         </tr>
         <tr>
-            @TempData["Msg"]
+            <th style="padding-top: 20px">&nbsp;</th>
+            <td>
+                <span class="text-danger">
+                    @TempData["Msg"]
+                </span>
+            </td>
         </tr>
     </table>
 </form>
+

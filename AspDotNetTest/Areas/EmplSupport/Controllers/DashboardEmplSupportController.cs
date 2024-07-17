@@ -16,10 +16,10 @@ public class DashboardEmplSupportController : Controller
 
     [Route("")]
     [Route("dashboard")]
-    //[Route("~/")]
     public IActionResult Index()
     {
-        ViewBag.requests = requestService.findAllRequests();
-        return View();
+        var username = HttpContext.Session.GetString("username");
+        ViewBag.requests = requestService.findReqByEmployee(username);
+        return View("Index");
     }
 }

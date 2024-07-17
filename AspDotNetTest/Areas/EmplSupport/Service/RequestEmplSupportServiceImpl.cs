@@ -11,9 +11,8 @@ public class RequestEmplSupportServiceImpl : RequestEmplSupportService
         this.databaseContext = databaseContext;
     }
 
-    public List<YeuCau> findAllRequests()
+    public List<YeuCau> findReqByEmployee(string username)
     {
-        return databaseContext.YeuCaus.ToList();
+        return databaseContext.YeuCaus.Where(r => r.ManvXuly == username).ToList();
     }
-
 }

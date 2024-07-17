@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -117,11 +118,22 @@
                         <li>
                             <!-- User Profile-->
                             <div class="user-profile d-flex no-block dropdown m-t-20">
-                                <div class="user-pic"><img src="~/assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
+                                <div class="user-pic"><img src="~/images/@(Context.Session.GetString("image"))" alt="users" class="rounded-circle" width="40" /></div>
                                 <div class="user-content hide-menu m-l-10">
                                     <a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <h5 class="m-b-0 user-name font-medium">Steave Jobs <i class="fa fa-angle-down"></i></h5>
-                                        <span class="op-5 user-email">varun@gmail.com</span>
+                                        <h5 class="m-b-0 user-name font-medium">@Context.Session.GetString("username") </h5>
+                                        <span class="op-5 user-email">
+                                            @{
+                                                int? role = Context.Session.GetInt32("role");
+                                                string roleText = role switch
+                                                {
+                                                    3 => "Admin",
+                                                    1 => "Employee",
+                                                    2 => "Employee Support"
+                                                };
+                                                @roleText
+                                            }
+                                        </span>
                                     </a>
                                 </div>
                             </div>
@@ -131,7 +143,12 @@
                         <!-- User Profile-->
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="admin" asp-action="dashboard" asp-controller="dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="admin" asp-action="list" asp-controller="employee" aria-expanded="false"><i class="mdi mdi-border-all"></i><span class="hide-menu">All Employees</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Profile</span></a></li>
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="admin" asp-action="index" asp-controller="profileadmin" aria-expanded="false">
+                                <i class="mdi mdi-account-network"></i><span class="hide-menu">
+                                Profile</span>
+                            </a>
+                        </li>
                         
                         
 

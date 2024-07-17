@@ -1,4 +1,5 @@
 ﻿using AspDotNetTest.Areas.Employee.Service;
+using AspDotNetTest.Areas.EmplSupport.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspDotNetTest.Areas.Employee.Controllers;
@@ -9,7 +10,7 @@ public class DashboardEmployeeController : Controller
 {
     private EmployeeReqService employeeReqService;
 
-    public DashboardEmployeeController(EmployeeReqService employeeReqService)
+    public DashboardEmployeeController(EmployeeReqService employeeReqService, RequestEmplSupportService requestEmplSupportService)
     {
         this.employeeReqService = employeeReqService;
     }
@@ -19,8 +20,9 @@ public class DashboardEmployeeController : Controller
     [Route("index")]
     public IActionResult Index()
     {
-        ViewBag.requests = employeeReqService.findAllRequest();
-
+        var employee = HttpContext.Session.GetString("username");
+        var account = employeeReqService.findEmplByUsername(employee);
+        ViewBag.requests = employeeReqService.findRequestByUsername(employee);
         return View("Index");
     }
 

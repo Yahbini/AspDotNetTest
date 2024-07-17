@@ -37,7 +37,18 @@
         <tr style="padding: 10px">
             <th style="padding-right: 30px;">Priority</th>
             <td>
-                @Model.Madouutien
+                @if (@Model.Madouutien == 1)
+                {
+                    <span>Low</span>
+                }
+                else if (@Model.Madouutien == 2)
+                {
+                    <span>Medium</span>
+                }
+                else if (@Model.Madouutien == 3)
+                {
+                    <span>High</span>
+                }
             </td>
         </tr>
 

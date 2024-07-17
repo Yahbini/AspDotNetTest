@@ -4,5 +4,5 @@ namespace AspDotNetTest.Areas.EmplSupport.Service;
 
 public interface RequestEmplSupportService
 {
-    public List<YeuCau> findAllRequests();
+    public List<YeuCau> findReqByEmployee(string username);
 }

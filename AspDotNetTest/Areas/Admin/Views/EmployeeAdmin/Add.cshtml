@@ -7,7 +7,7 @@
 <script>
     $(function () {
         $("#dob").datepicker({
-            dateFormat: 'dd/mm/yyyy'
+            dateFormat: 'dd/mm/yy'
         });
     });
 </script>
@@ -21,63 +21,70 @@
 <form method="post" asp-area="admin" asp-controller="employee" asp-action="add" enctype="multipart/form-data">
     <table style="margin-left: 400px">
         <tr>
-            <th>Username</th>
-            <td>
+            <th style="padding-top: 20px">Username</th>
+            <td style="padding-top: 20px; padding-left: 10px">
                 <input type="text" asp-for="Username"/>
+                <span asp-validation-for="Username" class="text-danger"></span>
             </td>
         </tr>
         <tr>
-            <th>Password</th>
-            <td>
+            <th style="padding-top: 20px">Password</th>
+            <td style="padding-top: 20px; padding-left: 10px">
                 <input type="password" asp-for="Password" />
             </td>
         </tr>
         <tr>
-            <th>Fullname</th>
-            <td>
+            <th style="padding-top: 20px">Fullname</th>
+            <td style="padding-top: 20px; padding-left: 10px">
                 <input type="text" asp-for="Hoten" />
             </td>
         </tr>
         <tr>
-            <th>Date of birth</th>
-            <td>
-                <input asp-for="Ngaysinh" asp-format="{0:dd/MM/yyyy}" id="dob" />
+            <th style="padding-top: 20px">Date of birth</th>
+            <td style="padding-top: 20px; padding-left: 10px">
+                <input asp-for="Ngaysinh" type="date" id="dob" />
             </td>
         </tr>
         <tr>
-            <th>Active</th>
-            <td>
+            <th style="padding-top: 20px">Active</th>
+            <td style="padding-top: 20px; padding-left: 10px">
                 <input type="radio" asp-for="Kichhoat" value="true" checked/> True
                 <input type="radio" asp-for="Kichhoat" value="false" /> False
             </td>
         </tr>
         <tr>
-            <th>Images</th>
-            <td>
+            <th style="padding-top: 20px">Images</th>
+            <td style="padding-top: 20px; padding-left: 10px">
                 <input type="file" name="file" asp-for="Hinhanh" />
             </td>
         </tr>
         <tr>
-            <th>Roles</th>
-            <td>
+            <th style="padding-top: 20px">Roles</th>
+            <td style="padding-top: 20px; padding-left: 10px">
                 <select asp-for="Quyen">
                     @foreach (var role in Enum.GetValues(typeof(Role)).Cast<Role>())
                     {
-                        <option value="@((int)role)">@role</option>
+                        if(role != Role.Admin)
+                        {
+                            <option value="@((int)role)">@role</option>
+                        }
                     }
 
                 </select>
             </td>
         </tr>
         <tr>
-            <th>&nbsp;</th>
-            <td>
+            <th style="padding-top: 20px">&nbsp;</th>
+            <td style="padding-top: 20px; padding-left: 10px">
                 <button type="submit">Save</button>
             </td>
         </tr>
         <tr>
-            <td>
-                @ViewBag.Msg
+            <th style="padding-top: 20px">&nbsp;</th>
+            <td style="padding-top: 20px; padding-left: 10px">
+                <span class="text-danger" style="font-size: 15px">
+                    @ViewBag.Msg
+                </span>
             </td>
         </tr>
 
